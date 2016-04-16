@@ -85,6 +85,16 @@ $(function() {
         hideHover: 'auto',
         resize: true
     });
+    Morris.Area({
+        element: 'morris-area4-chart',
+        data: data ,
+        xkey: 'period',
+        ykeys: ['iphone', 'ipad', 'itouch'],
+        labels: ['iPhone', 'iPad', 'iPod Touch'],
+        pointSize: 2,
+        hideHover: 'auto',
+        resize: true
+    });
 
     //// Donut Chart
     //Morris.Donut({
