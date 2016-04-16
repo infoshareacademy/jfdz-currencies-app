@@ -57,8 +57,8 @@ $(function() {
         element: 'morris-area-chart',
         data: data ,
         xkey: 'period',
-        ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['iPhone', 'iPad', 'iPod Touch'],
+        ykeys: ['iphone'],
+        labels: ['iPhone'],
         pointSize: 2,
         hideHover: 'auto',
         resize: true
@@ -68,8 +68,8 @@ $(function() {
         element: 'morris-area2-chart',
         data: data ,
         xkey: 'period',
-        ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['iPhone', 'iPad', 'iPod Touch'],
+        ykeys: ['iphone'],
+        labels: ['iPhone'],
         pointSize: 2,
         hideHover: 'auto',
         resize: true
@@ -79,8 +79,8 @@ $(function() {
         element: 'morris-area3-chart',
         data: data ,
         xkey: 'period',
-        ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['iPhone', 'iPad', 'iPod Touch'],
+        ykeys: ['iphone'],
+        labels: ['iPhone'],
         pointSize: 2,
         hideHover: 'auto',
         resize: true
@@ -89,8 +89,8 @@ $(function() {
         element: 'morris-area4-chart',
         data: data ,
         xkey: 'period',
-        ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['iPhone', 'iPad', 'iPod Touch'],
+        ykeys: ['iphone'],
+        labels: ['iPhone'],
         pointSize: 2,
         hideHover: 'auto',
         resize: true
