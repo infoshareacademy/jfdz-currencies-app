@@ -18,15 +18,8 @@
 
     <!-- Morris Charts CSS -->
     <link href="app/assets/css/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
     <link href="app/font/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet"
-          href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -35,291 +28,74 @@
 
 <body>
 
-<div id="wrapper">
+<!--<div id="wrapper">-->
 
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
 
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">Panel Admin</a>
-        </div>
+        <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" href="index.html">Panel Admin</a>-->
+        <!--</div>-->
 
-</div>
+<!--</div>-->
 
-</nav>
+<!--</nav>-->
 
 <div id="page-wrapper">
 
     <div class="container-fluid">
-
-        <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
                     Kalkulator walutowy
                 </h1>
-                <ol class="breadcrumb">
-
-                </ol>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-lg-12">
-
+                <ol class="breadcrumb"></ol>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-money fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">26</div>
-                                <div>New Comments!</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <div class="panel-footer">
-
-                            <div class="dropdown">
-                                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    Wybierz walutę
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                    <li> PLN</li>
-                                    <li> SEK</li>
-                                    <li> RUB</li>
-
-                                </ul>
-
-                            </div>
-
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-calendar-o fa-fw"></i> Area Chart</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-area-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-money fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">26</div>
-                                <div>New Comments!</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <div class="panel-footer">
-
-                            <div class="dropdown">
-                                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    Wybierz walutę
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                    <li> PLN</li>
-                                    <li> SEK</li>
-                                    <li> RUB</li>
-
-                                </ul>
-
-                            </div>
-
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-calendar-o fa-fw"></i> Area Chart</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-area4-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-money fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">12</div>
-                                <div>New Tasks!</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <div class="panel-footer">
-                            <div class="dropdown">
-                                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    Wybierz walutę
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                    <li> EUR</li>
-                                    <li> USD</li>
-                                    <li> CHF</li>
-
-                                </ul>
-
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-area2-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="panel panel-yellow">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-money fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">124</div>
-                                <div>New Orders!</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <div class="panel-footer">
-                            <div class="dropdown">
-                                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    Wybierz walutę
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                    <li> GBP</li>
-                                    <li> JPY</li>
-                                    <li> NOK</li>
-
-                                </ul>
-
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-area3-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <div class="col-lg-12"></div>
         </div>
-        <!-- /.row -->
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <i class="fa fa-calendar fa-5x"></i>
-
-                            </div>
-
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-calendar fa-5x"></i>
                         </div>
-
-                    </div>
-                    <div class="panel-footer">
-
-
-                        <div class="container">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <div class='input-group date' id='datetimepicker10'>
-                                        <input type='text' class="form-control"/>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker10'>
+                                    <input type='text' class="form-control"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar">
                                                 </span>
                                             </span>
-                                    </div>
                                 </div>
                             </div>
-
                         </div>
 
-                        <div class="clearfix"></div>
                     </div>
                 </div>
+                <div class="panel-footer">
+                    <!--<div class="container">-->
+
+                    <!--</div>-->
+                    <div class="clearfix"></div>
+                </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-calendar fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">26</div>
-                                <div>poczatkowa data</div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="panel-footer">
-                        <span class="pull-left">Wybierz datę</span>
-
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <img src="app/assets/js/icons/stop.png">
                         <div class="container">
                             <div class="col-sm-3">
                                 <div class="form-group">
@@ -334,13 +110,168 @@
                             </div>
 
                         </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+
+
+
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-yen fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="currencyRate1">Choose</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="dropdown">
+                            <select name="dLabel1" id="firstCurrency">
+                                <option>pln</option>
+                                <option>eur</option>
+                                <option>usd</option>
+                                <option>chf</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="morris-area-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-ruble fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="currencyRate2">Choose</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+
+                        <div class="dropdown">
+                            <select name="dLabel1" id="secondCurrency">
+                                <option>pln</option>
+                                <option>eur</option>
+                                <option>usd</option>
+                                <option>chf</option>
+                            </select>
+                        </div>
 
                         <div class="clearfix"></div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="morris-area2-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-eur fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="currencyRate3">Choose</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="dropdown">
+                            <select name="dLabel1" id="thirdCurrency">
+                                <option>pln</option>
+                                <option>eur</option>
+                                <option>usd</option>
+                                <option>chf</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="morris-area3-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-usd fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="currencyRate4">Choose</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="dropdown">
+                            <select name="dLabel1" id="fourthCurrency">
+                                <option>pln</option>
+                                <option>eur</option>
+                                <option>usd</option>
+                                <option>chf</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="morris-area4-chart"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-lg-4">
@@ -519,6 +450,62 @@
             format: 'DD/MM/YYYY'
         });
     });
+
+
+
+$('#firstCurrency').change(function() {
+    if ($(this).val() == 'pln') {
+        $('#currencyRate1').html('1.00');
+    } else if ($(this).val() == 'usd') {
+        $('#currencyRate1').html('4.00');
+    } else if ($(this).val() == 'eur') {
+        $('#currencyRate1').html('4.50');
+    } else {
+        $('#currencyRate1').html('3.50');
+    }
+
+});
+
+$('#secondCurrency').change(function() {
+    if ($(this).val() == 'pln') {
+        $('#currencyRate2').html('1.00');
+    } else if ($(this).val() == 'usd') {
+        $('#currencyRate2').html('4.00');
+    } else if ($(this).val() == 'eur') {
+        $('#currencyRate2').html('4.50');
+    } else {
+        $('#currencyRate2').html('3.50');
+    }
+
+});
+
+$('#thirdCurrency').change(function() {
+    if ($(this).val() == 'pln') {
+        $('#currencyRate3').html('1.00');
+    } else if ($(this).val() == 'usd') {
+        $('#currencyRate3').html('4.00');
+    } else if ($(this).val() == 'eur') {
+        $('#currencyRate3').html('4.50');
+    } else {
+        $('#currencyRate3').html('3.50');
+    }
+
+});
+
+$('#fourthCurrency').change(function() {
+    if ($(this).val() == 'pln') {
+        $('#currencyRate4').html('1.00');
+    } else if ($(this).val() == 'usd') {
+        $('#currencyRate4').html('4.00');
+    } else if ($(this).val() == 'eur') {
+        $('#currencyRate4').html('4.50');
+    } else {
+        $('#currencyRate4').html('3.50');
+    }
+
+});
+
+
 </script>
 </body>
 
