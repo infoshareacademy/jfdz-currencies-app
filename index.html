@@ -140,7 +140,7 @@
 
                     <div class="panel-footer">
                         <div class="dropdown">
-                            <select name="dLabel1" id="firstCurrency">
+                            <select name="dLabel1" id="firstCurrency" class="currencyDropdown" data-currency-target="currencyRate1">
                                 <option>pln</option>
                                 <option>eur</option>
                                 <option>usd</option>
@@ -178,7 +178,7 @@
                     <div class="panel-footer">
 
                         <div class="dropdown">
-                            <select name="dLabel1" id="secondCurrency">
+                            <select name="dLabel1" id="secondCurrency" class="currencyDropdown" data-currency-target="currencyRate2">
                                 <option>pln</option>
                                 <option>eur</option>
                                 <option>usd</option>
@@ -215,7 +215,7 @@
 
                     <div class="panel-footer">
                         <div class="dropdown">
-                            <select name="dLabel1" id="thirdCurrency">
+                            <select name="dLabel1" id="thirdCurrency" class="currencyDropdown" data-currency-target="currencyRate3">
                                 <option>pln</option>
                                 <option>eur</option>
                                 <option>usd</option>
@@ -251,7 +251,7 @@
 
                     <div class="panel-footer">
                         <div class="dropdown">
-                            <select name="dLabel1" id="fourthCurrency">
+                            <select name="dLabel1" id="fourthCurrency" class="currencyDropdown" data-currency-target="currencyRate4">
                                 <option>pln</option>
                                 <option>eur</option>
                                 <option>usd</option>
@@ -452,55 +452,16 @@
     });
 
 
-
-$('#firstCurrency').change(function() {
+$('.currencyDropdown').change(function() {
+    var field = $(this).attr('data-currency-target');
     if ($(this).val() == 'pln') {
-        $('#currencyRate1').html('1.00');
+        $('#'+field).html('1.00');
     } else if ($(this).val() == 'usd') {
-        $('#currencyRate1').html('4.00');
+        $('#'+field).html('4.00');
     } else if ($(this).val() == 'eur') {
-        $('#currencyRate1').html('4.50');
+        $('#'+field).html('4.50');
     } else {
-        $('#currencyRate1').html('3.50');
-    }
-
-});
-
-$('#secondCurrency').change(function() {
-    if ($(this).val() == 'pln') {
-        $('#currencyRate2').html('1.00');
-    } else if ($(this).val() == 'usd') {
-        $('#currencyRate2').html('4.00');
-    } else if ($(this).val() == 'eur') {
-        $('#currencyRate2').html('4.50');
-    } else {
-        $('#currencyRate2').html('3.50');
-    }
-
-});
-
-$('#thirdCurrency').change(function() {
-    if ($(this).val() == 'pln') {
-        $('#currencyRate3').html('1.00');
-    } else if ($(this).val() == 'usd') {
-        $('#currencyRate3').html('4.00');
-    } else if ($(this).val() == 'eur') {
-        $('#currencyRate3').html('4.50');
-    } else {
-        $('#currencyRate3').html('3.50');
-    }
-
-});
-
-$('#fourthCurrency').change(function() {
-    if ($(this).val() == 'pln') {
-        $('#currencyRate4').html('1.00');
-    } else if ($(this).val() == 'usd') {
-        $('#currencyRate4').html('4.00');
-    } else if ($(this).val() == 'eur') {
-        $('#currencyRate4').html('4.50');
-    } else {
-        $('#currencyRate4').html('3.50');
+        $('#'+field).html('3.50');
     }
 
 });
