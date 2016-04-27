@@ -33,13 +33,59 @@ $(function () {
         mm='0'+mm
     }
 
-    today = mm+'/'+dd+'/'+yyyy;
+    //today = mm+'/'+dd+'/'+yyyy;
+    today = yyyy+'/'+mm+'/'+dd;
+
+
+    //$('#datetimepicker10').datepicker({
+    //    format: "yyyy-mm-dd",
+    //    weekStart: 1,
+    //    startView: 1,
+    //    multidateSeparator: "-"
+    //});
     $('#datetimepicker10').datetimepicker({
-        defaultDate: today
+        defaultDate: today,
+        format: "YYYY-MM-DD"
+
+
     });
 
     $('#datetimepicker11').datetimepicker({
-        defaultDate: today
+        defaultDate: today,
+        format: "YYYY-MM-DD"
+
+
     });
 
 });
+
+
+
+
+
+var adreslatestver="http://api.fixer.io/latest?callback=?";
+var adresdata="http://api.fixer.io/{0}?callback=?";
+
+
+
+function getCurrentCurses(data, base) {
+    var rates=[];
+    $.ajax({
+        url:  "http://api.fixer.io/2000-01-03?callback=?",//  ,
+        method: "GET",
+        data: {rates: rates},
+        dataType: "json",
+        success: function (result) {
+            console.log(result);
+            return result;
+        }
+    });
+};
+
+
+function getCursesRange(dataFrom,dataTo,base){
+
+
+
+
+}
