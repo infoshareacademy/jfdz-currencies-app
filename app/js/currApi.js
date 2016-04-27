@@ -33,16 +33,11 @@ $(function () {
         mm='0'+mm
     }
 
-    //today = mm+'/'+dd+'/'+yyyy;
+
     today = yyyy+'/'+mm+'/'+dd;
 
 
-    //$('#datetimepicker10').datepicker({
-    //    format: "yyyy-mm-dd",
-    //    weekStart: 1,
-    //    startView: 1,
-    //    multidateSeparator: "-"
-    //});
+
     $('#datetimepicker10').datetimepicker({
         defaultDate: today,
         format: "YYYY-MM-DD"
