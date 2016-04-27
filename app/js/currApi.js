@@ -35,24 +35,11 @@ $(function () {
 
     today = mm+'/'+dd+'/'+yyyy;
     $('#datetimepicker10').datetimepicker({
-        defaultDate: today,
-        format: 'mm/dd/yyyy',
-        startDate: '-3d'
-
-
-
+        defaultDate: today
     });
 
-   // today = mm+'/'+dd+'/'+yyyy;
-
-   // $('#datetimepicker11').datetimepicker({
-   //     defaultDate: today,
-   //     format: 'mm/dd/yyyy',
-   //     startDate: '-3d'
-
-
-
-   // });
-
+    $('#datetimepicker11').datetimepicker({
+        defaultDate: today
+    });
 
 });
