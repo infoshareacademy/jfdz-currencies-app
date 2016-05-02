@@ -26,8 +26,9 @@ $(function () {
 
         defaultDate: new Date(),
         viewMode: 'years',
-        format: "YYYY-MM-DD"
 
+
+        format: "YYYY-MM-DD"
 
 
     });
@@ -40,84 +41,119 @@ $(function () {
         format: "YYYY-MM-DD"
 
 
-
     });
-
-
 
 
 });
 
 
-//$('.currencyDropdown').change(function() {
-//    var field = $(this).attr('data-currency-target');
-//    if ($(this).val() == 'pln') {
-//        $('#'+field).html('1.00');
-//    } else if ($(this).val() == 'usd') {
-//        $('#'+field).html('4.00');
-//    } else if ($(this).val() == 'eur') {
-//        $('#'+field).html('4.50');
-//    } else {
-//        $('#'+field).html('3.50');
-//    }
-//});
-
-
-//$('#datetimepicker10').change (function () {
-//   alert('aaaa');
-//    checkRangeDates();
-//});
-
-
 $('#btnrefresh').click(
- function(){
+    function () {
 
-     checkRangeDates();
- }
+      if (checkInvalidDates()){
+       var dates = getDates(getDateFrom(), getDateTo());
+         console.log(dates);
 
+      }
+    }
 );
 
 
+function getformatDate(data) {
 
 
-function checkRangeDates() {
+    var dd = data.getDate();
+    var mm = data.getMonth() + 1; //January is 0!
+    var yyyy = data.getFullYear();
 
-    //var datafrom = new Date();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
 
+    if (mm < 10) {
+        mm = '0' + mm
+    }
 
-    //var datato = new Date($('#datetimepicker11').datetimepicker("getDate"));
+    return yyyy + '-' + mm + '-' + dd;
 
-
-   // console.log(datafrom);
-   //alert($('#datetimepicker10').data("DateTimePicker").getDate());
-
-    var mydatetimepicker = $('#datetimepicker10').datetimepicker();
-    var dtp = mydatetimepicker.data('DateTimePicker');
-    //console.log( new Date(dtp.date()).toDateString());
-    //var datafrom = new Date();
-    console.log( new Date(dtp.date()).getMonth());
-};
+}
 
 
+function getDateFrom(){
+    var mydatetimepickerfrom = $('#datetimepicker10').datetimepicker();
+    var dtpfrom = mydatetimepickerfrom.data('DateTimePicker');
+    var datafrom = new Date(dtpfrom.date());
+    console.log(getformatDate(datafrom));
+    return datafrom;
+
+}
 
 
-var adreslatestver = "http://api.fixer.io/latest?callback=?";
-var adresdata = "http://api.fixer.io/{0}?callback=?";
+function getDateTo(){
+    var mydatetimepickerto = $('#datetimepicker11').datetimepicker();
+    var dtpto = mydatetimepickerto.data('DateTimePicker');
+    var datato = new Date(dtpto.date());
+    console.log(getformatDate(datato));
+    return datato;
+
+}
 
 
-function getCurrentCurses(data, base) {
-    var rates = [];
-    $.ajax({
-        url: "http://api.fixer.io/2000-01-03?callback=?",//  ,
-        method: "GET",
-        data: {rates: rates},
-        dataType: "json",
-        success: function (result) {
-            console.log(result);
-            return result;
+function checkInvalidDates() {
+    var datafrom = getDateFrom();
+    var datato =  getDateTo();
+    if (datafrom > datato)
+        {
+            alert('Błędne określenie dat');
+            return false;
+        } else if (getformatDate(datafrom) === '1970-01-01') {
+            alert('Proszę wypełnić pole Data początkowa');
+            return false;
+
+        } else if (getformatDate(datato) === '1970-01-01') {
+            alert('Proszę wypełnić pole Data końcowa');
+            return false;
         }
-    });
-};
+
+    return true;}
+
+
+
+Date.prototype.addDays = function(days) {
+    var dat = new Date(this.valueOf())
+    dat.setDate(dat.getDate() + days);
+    return dat;
+}
+
+function getDates(startDate, stopDate) {
+    var dateArray = new Array();
+    var currentDate = startDate;
+    while (currentDate <= stopDate) {
+        dateArray.push( new Date (currentDate) )
+        currentDate = currentDate.addDays(1);
+    }
+    return dateArray;
+}
+
+
+
+    var adreslatestver = "http://api.fixer.io/latest?callback=?";
+    var adresdata = "http://api.fixer.io/{0}?callback=?";
+
+
+    function getCurrentCurses(data, base) {
+        var rates = [];
+        $.ajax({
+            url: "http://api.fixer.io/2000-01-03?callback=?",//  ,
+            method: "GET",
+            data: {rates: rates},
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                return result;
+            }
+        });
+    };
 
 
 function getCursesRange(dataFrom, dataTo, base) {
