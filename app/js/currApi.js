@@ -52,8 +52,9 @@ $('#btnrefresh').click(
 
       if (checkInvalidDates()){
        var dates = getDates(getDateFrom(), getDateTo());
-         console.log(dates);
 
+         console.log(dates);
+          var jsonArray= getJsonCursesRange(dates, 'USD');
       }
     }
 );
@@ -137,14 +138,30 @@ function getDates(startDate, stopDate) {
 
 
 
-    var adreslatestver = "http://api.fixer.io/latest?callback=?";
-    var adresdata = "http://api.fixer.io/{0}?callback=?";
+    //var adreslatestver = "http://api.fixer.io/latest?callback=?";
+    //var adresdata = "http://api.fixer.io/{0}?callback=?";
+    var dynurl = "http://api.fixer.io/{0}?base={1}?callback=?";
 
 
-    function getCurrentCurses(data, base) {
+//function getCurrentCurses(data, base) {
+//        var rates = [];
+//        $.ajax({
+//            url: "http://api.fixer.io/2000-01-03?callback=?",//  ,
+//            method: "GET",
+//            data: {rates: rates},
+//            dataType: "json",
+//            success: function (result) {
+//                console.log(result);
+//                return result;
+//            }
+//        });
+//};
+
+
+function getCurrentCurses(_url) {
         var rates = [];
         $.ajax({
-            url: "http://api.fixer.io/2000-01-03?callback=?",//  ,
+            url: _url,//  ,
             method: "GET",
             data: {rates: rates},
             dataType: "json",
@@ -153,10 +170,28 @@ function getDates(startDate, stopDate) {
                 return result;
             }
         });
-    };
+};
 
 
-function getCursesRange(dataFrom, dataTo, base) {
 
+
+
+function getUrl(data, base){
+ return 'http://api.fixer.io/{0}?base={1}?callback=?'.format(data, base);
+}
+
+
+function getJsonCursesRange(dates, base)
+{
+    var data;
+    var url;
+    var jsonArray  =  new Array();
+    for (i=0;i<= dates.length-1; i++){
+     data= getformatDate(dates[i]);
+        jsonArray.push(getCurrentCurses(getUrl(data,base)));
+    }
+
+    console.log(jsonArray);
+    return jsonArray;
 
 };
