@@ -1,21 +1,39 @@
 /**
  * Created by pperetko on 23.04.16.
  */
+//Morris.Area({
+//    element: 'morris-area-chart',
+//    data: [
+//
+//        {y: '2010', a: 50, b: 40},
+//        {y: '2011', a: 75, b: 65},
+//        {y: '2012', a: 100, b: 90},
+//        {y: '2013', a: 60, b: 40},
+//        {y: '2014', a: 40, b: 65},
+//        {y: '2015', a: 78, b: 90}
+//
+//    ],
+//    xkey: 'y',
+//    ykeys: ['a', 'b'],
+//    labels: ['Series A', 'Series B']
+//});
+
+
 Morris.Area({
     element: 'morris-area-chart',
     data: [
 
-        {y: '2010', a: 50, b: 40},
-        {y: '2011', a: 75, b: 65},
-        {y: '2012', a: 100, b: 90},
-        {y: '2013', a: 60, b: 40},
-        {y: '2014', a: 40, b: 65},
-        {y: '2015', a: 78, b: 90}
+        {y: '2016-05-01', c: 50},
+        {y: '2016=05-02', c: 75},
+        {y: '2016-05-03', c: 100},
+        {y: '2016-05-04', c: 60},
+        {y: '2016-05-05', c: 40},
+        {y: '2016-05-06', c: 78}
 
     ],
     xkey: 'y',
-    ykeys: ['a', 'b'],
-    labels: ['Series A', 'Series B']
+    ykeys: ['c'],
+    labels: ['kurs']
 });
 
 
@@ -50,12 +68,12 @@ $(function () {
 $('#btnrefresh').click(
     function () {
 
-      if (checkInvalidDates()){
-       var dates = getDates(getDateFrom(), getDateTo());
+        if (checkInvalidDates()) {
+            var dates = getDates(getDateFrom(), getDateTo());
 
-         console.log(dates);
-          var jsonArray= getJsonCursesRange(dates, 'USD');
-      }
+            console.log(dates);
+            var jsonArray = getJsonCursesRange(dates, 'USD');
+        }
     }
 );
 
@@ -80,7 +98,7 @@ function getformatDate(data) {
 }
 
 
-function getDateFrom(){
+function getDateFrom() {
     var mydatetimepickerfrom = $('#datetimepicker10').datetimepicker();
     var dtpfrom = mydatetimepickerfrom.data('DateTimePicker');
     var datafrom = new Date(dtpfrom.date());
@@ -90,7 +108,7 @@ function getDateFrom(){
 }
 
 
-function getDateTo(){
+function getDateTo() {
     var mydatetimepickerto = $('#datetimepicker11').datetimepicker();
     var dtpto = mydatetimepickerto.data('DateTimePicker');
     var datato = new Date(dtpto.date());
@@ -102,25 +120,24 @@ function getDateTo(){
 
 function checkInvalidDates() {
     var datafrom = getDateFrom();
-    var datato =  getDateTo();
-    if (datafrom > datato)
-        {
-            alert('Błędne określenie dat');
-            return false;
-        } else if (getformatDate(datafrom) === '1970-01-01') {
-            alert('Proszę wypełnić pole Data początkowa');
-            return false;
+    var datato = getDateTo();
+    if (datafrom > datato) {
+        alert('Błędne określenie dat');
+        return false;
+    } else if (getformatDate(datafrom) === '1970-01-01') {
+        alert('Proszę wypełnić pole Data początkowa');
+        return false;
 
-        } else if (getformatDate(datato) === '1970-01-01') {
-            alert('Proszę wypełnić pole Data końcowa');
-            return false;
-        }
+    } else if (getformatDate(datato) === '1970-01-01') {
+        alert('Proszę wypełnić pole Data końcowa');
+        return false;
+    }
 
-    return true;}
+    return true;
+}
 
 
-
-Date.prototype.addDays = function(days) {
+Date.prototype.addDays = function (days) {
     var dat = new Date(this.valueOf())
     dat.setDate(dat.getDate() + days);
     return dat;
@@ -130,68 +147,74 @@ function getDates(startDate, stopDate) {
     var dateArray = new Array();
     var currentDate = startDate;
     while (currentDate <= stopDate) {
-        dateArray.push( new Date (currentDate) )
+        dateArray.push(new Date(currentDate))
         currentDate = currentDate.addDays(1);
     }
     return dateArray;
 }
 
 
-
-    //var adreslatestver = "http://api.fixer.io/latest?callback=?";
-    //var adresdata = "http://api.fixer.io/{0}?callback=?";
-    var dynurl = "http://api.fixer.io/{0}?base={1}?callback=?";
-
-
-//function getCurrentCurses(data, base) {
-//        var rates = [];
-//        $.ajax({
-//            url: "http://api.fixer.io/2000-01-03?callback=?",//  ,
-//            method: "GET",
-//            data: {rates: rates},
-//            dataType: "json",
-//            success: function (result) {
-//                console.log(result);
-//                return result;
-//            }
-//        });
-//};
-
-
 function getCurrentCurses(_url) {
-        var rates = [];
-        $.ajax({
-            url: _url,//  ,
-            method: "GET",
-            data: {rates: rates},
-            dataType: "json",
-            success: function (result) {
-                console.log(result);
-                return result;
-            }
-        });
+    var rates = {};
+    $.ajax({
+        url: _url,
+        method: "GET",
+        data: {rates: rates},
+        dataType: "json",
+        success: function (result) {
+            console.log(result);
+            return result;
+        },
+        error: function (xhr, status, error) {
+            console.log(status);
+
+        }
+    });
+    return rates;
 };
 
 
 
 
-
-function getUrl(data, base){
- return 'http://api.fixer.io/{0}?base={1}?callback=?'.format(data, base);
+String.format = function () {
+    var s = arguments[0];
+    for (var i = 0; i < arguments.length - 1; i++) {
+        var reg = new RegExp("\\{" + i + "\\}", "gm");
+        s = s.replace(reg, arguments[i + 1]);
+    }
+    return s;
 }
 
 
-function getJsonCursesRange(dates, base)
-{
+function getUrl(data, base) {
+    var url = String.format("http://api.fixer.io/{0}?base={1}&callback=?", data, base);
+    return url;
+}
+
+
+function getJsonCursesRange(dates, base) {
     var data;
     var url;
-    var jsonArray  =  new Array();
-    for (i=0;i<= dates.length-1; i++){
-     data= getformatDate(dates[i]);
-        jsonArray.push(getCurrentCurses(getUrl(data,base)));
+    var jsonArray = new Array();
+    for (i = 0; i <= dates.length - 1; i++) {
+        data = getformatDate(dates[i]);
+        url = getUrl(data, base);
+        jsonArray.push(getCurrentCurses(url));
     }
 
     console.log(jsonArray);
     return jsonArray;
 
 };
+
+
+
+function getDataChart(jsonArray){
+
+
+
+
+
+}
+
+

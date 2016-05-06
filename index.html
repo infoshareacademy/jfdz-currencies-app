@@ -35,6 +35,7 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                                 <img src="app/assets/js/icons/play.png">
+
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
                                 <div>
@@ -57,9 +58,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                                <img src="app/assets/js/icons/stop.png">
-                            </div>
+
                             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
                                 <div>
                                     <h4>Data końcowa</h4>
@@ -72,6 +71,10 @@
                                         </span>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
+                                <!--<img src="app/assets/js/icons/stop.png">-->
+                                <button type="button" class="btn btn-success" id="btnrefresh" >Odśwież</button>
                             </div>
                         </div>
                     </div>
@@ -94,16 +97,19 @@
 
                     <div class="panel-footer">
                         <div class="dropdown">
-                            <select name="dLabel1" id="firstCurrency" class="currencyDropdown" data-currency-target="currencyRate1">
+                            <select name="dLabel1" id="firstCurrency" class="currencyDropdown"
+                                    data-currency-target="currencyRate1">
                                 <option>pln</option>
                                 <option>eur</option>
                                 <option>usd</option>
                                 <option>chf</option>
+
                             </select>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
@@ -113,6 +119,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="panel panel-primary">
@@ -394,39 +401,17 @@
 <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
 <script type="text/javascript" src="app/js/currApi.js"></script>
 <script type="text/javascript"
-        src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker10').datetimepicker({
-            viewMode: 'years',
-            format: 'DD/MM/YYYY'
-        });
-    });
+        src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js">
+
 </script>
+
 <script type="text/javascript">
     $(function () {
-        $('#datetimepicker11').datetimepicker({
-            viewMode: 'years',
-            format: 'DD/MM/YYYY'
-        });
         $('#data').datetimepicker({
             viewMode: 'years',
             format: 'DD/MM/YYYY'
         });
     });
-$('.currencyDropdown').change(function() {
-    var field = $(this).attr('data-currency-target');
-    if ($(this).val() == 'pln') {
-        $('#'+field).html('1.00');
-    } else if ($(this).val() == 'usd') {
-        $('#'+field).html('4.00');
-    } else if ($(this).val() == 'eur') {
-        $('#'+field).html('4.50');
-    } else {
-        $('#'+field).html('3.50');
-    }
-});
-
 
 </script>
 </body>
