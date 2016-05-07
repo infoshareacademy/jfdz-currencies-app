@@ -84,7 +84,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-yen fa-5x calc-icon-cur"></i>
+                                <i class="fa fa-question fa-5x calc-icon-cur"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge" id="currencyRate1">Choose</div>
@@ -119,7 +119,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-usd fa-5x calc-icon-cur"></i>
+                                <i class="fa fa-question fa-5x calc-icon-cur"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge" id="currencyRate2">Choose</div>
@@ -153,11 +153,11 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="panel panel-green">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-eur fa-5x calc-icon-cur"></i>
+                                <i class="fa fa-question fa-5x calc-icon-cur"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge" id="currencyRate3">Choose</div>
@@ -189,11 +189,11 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="panel panel-yellow">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-gbp fa-5x calc-icon-cur"></i>
+                                <i class="fa fa-question fa-5x calc-icon-cur"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge" id="currencyRate4">Choose</div>
@@ -418,7 +418,8 @@ $('.currencyDropdown').change(function() {
 
     var cur = 'fa-' + $(this).val().toLowerCase(); // fa-YEN  -> fa-yen
     var icon = $(this).parents('.panel').find('.calc-icon-cur');
-    icon.removeClass('fa-eur fa-usd fa-gbp fa-yen').addClass( cur );
+    console.log(icon);
+    icon.removeClass('fa-eur fa-usd fa-gbp fa-yen fa-question').addClass( cur );
     var currency = { EUR: '1.00', USD: '4.00', GBP: '4.50', YEN: '3.50'}
     $('#'+field).html(currency[ $(this).val() ] );
 
