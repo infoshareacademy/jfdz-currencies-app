@@ -1,12 +1,56 @@
 // Morris.js Charts sample data for SB Admin template
 
 $(function() {
-    var data = [{
+    var data = [
+
+
+
+
+    {
+        period: '2016 Q1',
+        usd: 4.23,
+        gbp: 2.35,
+        yen: 4.11
+    },{
+        period: '2016 Q2',
+        usd: 4.23,
+        gbp: 2.35,
+        yen: 4.11
+    },{
+        period: '2016 Q3',
+        usd: 1.23,
+        gbp: 2.35,
+        yen: 4.11
+    },
+        {
+        period: '2016 Q4',
+        usd: 4.23,
+        gbp: 5.35,
+        yen: 4.11
+    },
+        /*
+
+        {
         period: '2010 Q1',
         iphone: 2666,
         ipad: null,
         itouch: 2647
-    }, {
+    },{
+        period: '2010 Q1',
+        iphone: 2666,
+        ipad: null,
+        itouch: 2647
+    },{
+        period: '2010 Q1',
+        iphone: 2666,
+        ipad: null,
+        itouch: 2647
+    },
+
+
+
+
+        {
         period: '2010 Q2',
         iphone: 2778,
         ipad: 2294,
@@ -51,18 +95,33 @@ $(function() {
         iphone: 8432,
         ipad: 5713,
         itouch: 1791
-    }];
+    }*/
+    ];
     // Area Chart
-    Morris.Area({
-        element: 'morris-area-chart',
-        data: data ,
-        xkey: 'period',
-        ykeys: ['iphone'],
-        labels: ['iPhone'],
-        pointSize: 2,
-        hideHover: 'auto',
-        resize: true
-    });
+
+
+    drawChart = function( currency, id ) {
+        $('#' + id).text('');
+        Morris.Area({
+            element: id,
+            data: data,
+            xkey: 'period',
+            ykeys: [ currency.toLowerCase() ],
+            labels: [ currency.toUpperCase() ],
+            pointSize: 2,
+            hideHover: 'auto',
+            resize: false
+        });
+    }
+
+
+
+    //drawChart('GBP', 'morris-area-chart');
+    //drawChart('USD', 'morris-area2-chart');
+    //drawChart('', 'morris-area3-chart');
+    //drawChart('', 'morris-area4-chart');
+
+ /*
     // Area Chart
     Morris.Area({
         element: 'morris-area2-chart',
@@ -95,7 +154,7 @@ $(function() {
         hideHover: 'auto',
         resize: true
     });
-
+*/
     //// Donut Chart
     //Morris.Donut({
     //    element: 'morris-donut-chart',
