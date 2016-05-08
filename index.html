@@ -416,7 +416,7 @@
 $('.currencyDropdown').change(function() {
     var field = $(this).attr('data-currency-target');
 
-    var cur = 'fa-' + $(this).val().toLowerCase(); // fa-YEN  -> fa-yen
+    var cur = 'fa-' + $(this).val().toLowerCase();
     var icon = $(this).parents('.panel').find('.calc-icon-cur');
     console.log(icon);
     icon.removeClass('fa-eur fa-usd fa-gbp fa-yen fa-question').addClass( cur );
@@ -428,19 +428,6 @@ $('.currencyDropdown').change(function() {
     var id = huge.attr('id').replace('currencyRate', '');
     drawChart( $(this).val(), 'morris-area' + id + '-chart' );
 
-
-
-//    if ($(this).val() == 'EUR') {
-////        $(this).addClass("fa-eur");
-//        $('#'+field).html('1.00');
-//    } else if ($(this).val() == 'USD') {
-////        $(this).removeClass("fa-eur").addClass("fa-usd");
-//        $('#'+field).html('4.00');
-//    } else if ($(this).val() == 'GBP') {
-//        $('#'+field).html('4.50');
-//    } else {
-//        $('#'+field).html('3.50');
-//    }
 });
 
 
