@@ -71,8 +71,17 @@ $('#btnrefresh').click(
         if (checkInvalidDates()) {
             var dates = getDates(getDateFrom(), getDateTo());
 
-            console.log(dates);
+           // console.log(dates);
             var jsonArray = getJsonCursesRange(dates, 'USD');
+
+            if (jsonArray.length >0 ){
+
+             var datachart= getDataChart(jsonArray);
+
+            } else {
+
+
+            }
         }
     }
 );
@@ -102,7 +111,7 @@ function getDateFrom() {
     var mydatetimepickerfrom = $('#datetimepicker10').datetimepicker();
     var dtpfrom = mydatetimepickerfrom.data('DateTimePicker');
     var datafrom = new Date(dtpfrom.date());
-    console.log(getformatDate(datafrom));
+   // console.log(getformatDate(datafrom));
     return datafrom;
 
 }
@@ -112,7 +121,7 @@ function getDateTo() {
     var mydatetimepickerto = $('#datetimepicker11').datetimepicker();
     var dtpto = mydatetimepickerto.data('DateTimePicker');
     var datato = new Date(dtpto.date());
-    console.log(getformatDate(datato));
+  //  console.log(getformatDate(datato));
     return datato;
 
 }
@@ -153,25 +162,37 @@ function getDates(startDate, stopDate) {
     return dateArray;
 }
 
+var datawithajax;
+
+
+function successCallBack(returnData){
+   datawithajax=returnData;
+}
 
 function getCurrentCurses(_url) {
     var rates = {};
+    var result;
     $.ajax({
         url: _url,
         method: "GET",
         data: {rates: rates},
+       // crossDomain: true,
         dataType: "json",
-        success: function (result) {
-            console.log(result);
-            return result;
-        },
+        async:false,
+         success: successCallBack,
         error: function (xhr, status, error) {
             console.log(status);
 
         }
     });
-    return rates;
+    console.log(datawithajax);
+    return datawithajax;
+
 };
+
+function someFunction( data ) {
+    datawithajax= data;
+}
 
 
 
@@ -199,10 +220,11 @@ function getJsonCursesRange(dates, base) {
     for (i = 0; i <= dates.length - 1; i++) {
         data = getformatDate(dates[i]);
         url = getUrl(data, base);
-        jsonArray.push(getCurrentCurses(url));
+        var js= getCurrentCurses(url);
+        jsonArray.push(js);
     }
 
-    console.log(jsonArray);
+   // console.log(jsonArray);
     return jsonArray;
 
 };
@@ -210,9 +232,11 @@ function getJsonCursesRange(dates, base) {
 
 
 function getDataChart(jsonArray){
+ var  result = new Array();
 
-
-
+    for (i = 0; i <= jsonArray.length - 1; i++) {
+      console.log(jsonArray[i]);
+    }
 
 
 }
