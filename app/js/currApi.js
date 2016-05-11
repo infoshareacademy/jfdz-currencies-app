@@ -19,23 +19,9 @@
 //});
 
 
-Morris.Area({
-    element: 'morris-area-chart',
-    data: [
 
-        {y: '2016-05-01', c: 50},
-        {y: '2016=05-02', c: 75},
-        {y: '2016-05-03', c: 100},
-        {y: '2016-05-04', c: 60},
-        {y: '2016-05-05', c: 40},
-        {y: '2016-05-06', c: 78}
-
-    ],
-    xkey: 'y',
-    ykeys: ['c'],
-    labels: ['kurs']
-});
-
+var datawithajax=[];
+var datatochart=[];
 
 $(function () {
 
@@ -68,21 +54,16 @@ $(function () {
 $('#btnrefresh').click(
     function () {
 
+        datawithajax.splice(0,datawithajax.length);
+        datatochart.splice(0,datatochart.length);
+
         if (checkInvalidDates()) {
             var dates = getDates(getDateFrom(), getDateTo());
+            getJsonCursesRange(dates, 'USD');
 
-           // console.log(dates);
-            var jsonArray = getJsonCursesRange(dates, 'USD');
-
-            if (jsonArray.length >0 ){
-
-             var datachart= getDataChart(jsonArray);
-
-            } else {
-
-
-            }
         }
+
+
     }
 );
 
@@ -162,31 +143,30 @@ function getDates(startDate, stopDate) {
     return dateArray;
 }
 
-var datawithajax;
+
+
+
+
 
 
 function successCallBack(returnData){
-   datawithajax=returnData;
+
+     datawithajax.push( returnData);
+     getDataChart(datawithajax,'PLN');
+     setcharts();
+
+}
+
+
+function errorCallBack(xhr, status, error){
+
+
+
 }
 
 function getCurrentCurses(_url) {
-    var rates = {};
-    var result;
-    $.ajax({
-        url: _url,
-        method: "GET",
-        data: {rates: rates},
-       // crossDomain: true,
-        dataType: "json",
-        async:false,
-         success: successCallBack,
-        error: function (xhr, status, error) {
-            console.log(status);
 
-        }
-    });
-    console.log(datawithajax);
-    return datawithajax;
+    $.getJSON(_url, successCallBack);
 
 };
 
@@ -216,7 +196,7 @@ function getUrl(data, base) {
 function getJsonCursesRange(dates, base) {
     var data;
     var url;
-    var jsonArray = new Array();
+    var jsonArray = [];
     for (i = 0; i <= dates.length - 1; i++) {
         data = getformatDate(dates[i]);
         url = getUrl(data, base);
@@ -231,12 +211,60 @@ function getJsonCursesRange(dates, base) {
 
 
 
-function getDataChart(jsonArray){
- var  result = new Array();
+function getDataChart(jsonArray, currences){
 
-    for (i = 0; i <= jsonArray.length - 1; i++) {
-      console.log(jsonArray[i]);
+     var data;
+     for (i = 0; i <= jsonArray.length-1 ; i++) {
+
+      var js= {};
+      data = jsonArray[i];
+        js.y = data.date;
+        js.base=data.base;
+        switch (currences) {
+            case 'PLN':
+                js.c = data.rates.PLN;
+                break;
+            case 'CHF':
+                js.c = data.rates.CHF;
+                break;
+            case 'EUR':
+                js.c = data.rates.EUR;
+                break;
+            case 'USD':
+                js.c = data.rates.USD;
+                break;
+
+        }
+
+
+         datatochart.push(js);
+
+
     }
+
+
+}
+
+
+
+
+function clearcharts(){
+
+    $('#morris-area-chart').html('');
+
+}
+
+
+
+function  setcharts(){
+    clearcharts();
+    Morris.Area({
+        element: 'morris-area-chart',
+        data: datatochart,
+        xkey: 'y',
+        ykeys: ['c'],
+        labels: ['kurs']
+    });
 
 
 }
