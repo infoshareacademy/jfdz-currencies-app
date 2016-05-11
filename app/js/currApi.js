@@ -1,27 +1,18 @@
 /**
  * Created by pperetko on 23.04.16.
  */
-//Morris.Area({
-//    element: 'morris-area-chart',
-//    data: [
-//
-//        {y: '2010', a: 50, b: 40},
-//        {y: '2011', a: 75, b: 65},
-//        {y: '2012', a: 100, b: 90},
-//        {y: '2013', a: 60, b: 40},
-//        {y: '2014', a: 40, b: 65},
-//        {y: '2015', a: 78, b: 90}
-//
-//    ],
-//    xkey: 'y',
-//    ykeys: ['a', 'b'],
-//    labels: ['Series A', 'Series B']
-//});
 
 
 
-var datawithajax=[];
-var datatochart=[];
+const firstBaseCurr = 'JPY';
+const twoBaseCurr = 'RUB';
+const threeBaseCurr = 'EUR';
+const fourBaseCurr = 'USD';
+
+
+var datawithajax = [];
+var datatochart = [];
+
 
 $(function () {
 
@@ -54,12 +45,18 @@ $(function () {
 $('#btnrefresh').click(
     function () {
 
-        datawithajax.splice(0,datawithajax.length);
-        datatochart.splice(0,datatochart.length);
+        datawithajax.splice(0, datawithajax.length);
+        datatochart.splice(0, datatochart.length);
 
         if (checkInvalidDates()) {
             var dates = getDates(getDateFrom(), getDateTo());
-            getJsonCursesRange(dates, 'USD');
+            getJsonCursesRange(dates, firstBaseCurr);
+
+            datawithajax.splice(0, datawithajax.length);
+            datatochart.splice(0, datatochart.length);
+
+            getJsonCursesRange(dates, twoBaseCurr);
+
 
         }
 
@@ -92,7 +89,7 @@ function getDateFrom() {
     var mydatetimepickerfrom = $('#datetimepicker10').datetimepicker();
     var dtpfrom = mydatetimepickerfrom.data('DateTimePicker');
     var datafrom = new Date(dtpfrom.date());
-   // console.log(getformatDate(datafrom));
+    // console.log(getformatDate(datafrom));
     return datafrom;
 
 }
@@ -102,7 +99,7 @@ function getDateTo() {
     var mydatetimepickerto = $('#datetimepicker11').datetimepicker();
     var dtpto = mydatetimepickerto.data('DateTimePicker');
     var datato = new Date(dtpto.date());
-  //  console.log(getformatDate(datato));
+    //  console.log(getformatDate(datato));
     return datato;
 
 }
@@ -144,37 +141,23 @@ function getDates(startDate, stopDate) {
 }
 
 
+function successCallBack(returnData) {
 
-
-
-
-
-function successCallBack(returnData){
-
-     datawithajax.push( returnData);
-     getDataChart(datawithajax,'PLN');
-     setcharts();
+    datawithajax.push(returnData);
+    getDataChart(datawithajax, 'PLN', firstBaseCurr);
+    setcharts(firstBaseCurr);
 
 }
 
 
-function errorCallBack(xhr, status, error){
-
+function errorCallBack(xhr, status, error) {
 
 
 }
 
-function getCurrentCurses(_url) {
-
+function getCurrentCurses(_url, base) {
     $.getJSON(_url, successCallBack);
-
 };
-
-function someFunction( data ) {
-    datawithajax= data;
-}
-
-
 
 
 String.format = function () {
@@ -200,26 +183,22 @@ function getJsonCursesRange(dates, base) {
     for (i = 0; i <= dates.length - 1; i++) {
         data = getformatDate(dates[i]);
         url = getUrl(data, base);
-        var js= getCurrentCurses(url);
-        jsonArray.push(js);
+        getCurrentCurses(url, base);
+
     }
-
-   // console.log(jsonArray);
-    return jsonArray;
-
 };
 
 
+function getDataChart(jsonArray, currences, base) {
 
-function getDataChart(jsonArray, currences){
+    var data;
+    var result = [];
+    for (i = 0; i <= jsonArray.length - 1; i++) {
 
-     var data;
-     for (i = 0; i <= jsonArray.length-1 ; i++) {
-
-      var js= {};
-      data = jsonArray[i];
+        var js = {};
+        data = jsonArray[i];
         js.y = data.date;
-        js.base=data.base;
+        js.base = data.base;
         switch (currences) {
             case 'PLN':
                 js.c = data.rates.PLN;
@@ -237,36 +216,40 @@ function getDataChart(jsonArray, currences){
         }
 
 
-         datatochart.push(js);
+        datatochart.push(js);
 
 
     }
 
+    return result;
 
 }
 
 
-
-
-function clearcharts(){
-
-    $('#morris-area-chart').html('');
+function clearcharts(base) {
+    switch (base) {
+        case firstBaseCurr:
+            $('#morris-area-chart').html('');
+            break;
+    }
 
 }
 
 
+function setcharts(base) {
+    clearcharts(base);
+    switch (base) {
+        case firstBaseCurr:
+            Morris.Area({
+                element: 'morris-area-chart',
+                data: datatochart,
+                xkey: 'y',
+                ykeys: ['c'],
+                labels: ['kurs']
+            });
+            break;
 
-function  setcharts(){
-    clearcharts();
-    Morris.Area({
-        element: 'morris-area-chart',
-        data: datatochart,
-        xkey: 'y',
-        ykeys: ['c'],
-        labels: ['kurs']
-    });
-
-
+    }
 }
 
 
