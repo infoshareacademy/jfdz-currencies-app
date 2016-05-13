@@ -13,6 +13,18 @@ const fourBaseCurr = 'USD';
 var datawithajax = [];
 var datatochart = [];
 
+var datawithajaxRub = [];
+var datatochartRub= [];
+
+var datawithajaxEUR = [];
+var datatochartEUR= [];
+
+var datawithajaxUSD = [];
+var datatochartUSD= [];
+
+
+
+
 
 $(function () {
 
@@ -24,7 +36,6 @@ $(function () {
 
 
         format: "YYYY-MM-DD"
-
 
     });
 
@@ -48,16 +59,28 @@ $('#btnrefresh').click(
         datawithajax.splice(0, datawithajax.length);
         datatochart.splice(0, datatochart.length);
 
+
         if (checkInvalidDates()) {
             var dates = getDates(getDateFrom(), getDateTo());
             getJsonCursesRange(dates, firstBaseCurr);
 
-            datawithajax.splice(0, datawithajax.length);
-            datatochart.splice(0, datatochart.length);
+
+            datawithajaxRub.splice(0, datawithajaxRub.length);
+            datatochartRub.splice(0, datatochartRub.length);
 
             getJsonCursesRange(dates, twoBaseCurr);
 
+            datawithajaxEUR.splice(0, datawithajaxEUR.length);
+            datatochartEUR.splice(0, datatochartEUR.length);
 
+
+            getJsonCursesRange(dates, threeBaseCurr);
+
+
+            datawithajaxUSD.splice(0, datawithajaxUSD.length);
+            datatochartUSD.splice(0, datatochartUSD.length);
+
+            getJsonCursesRange(dates, fourBaseCurr);
         }
 
 
@@ -141,13 +164,57 @@ function getDates(startDate, stopDate) {
 }
 
 
+Array.prototype.inArray = function(wartosc) {
+
+    for(x = 0; x < this.length; x++)
+        if(this[x].date == wartosc.date) return true;
+
+    return false;
+}
+
+
 function successCallBack(returnData) {
 
-    datawithajax.push(returnData);
-    getDataChart(datawithajax, 'PLN', firstBaseCurr);
-    setcharts(firstBaseCurr);
+    if(!datawithajax.inArray(returnData) ) {
+        datawithajax.push(returnData);
 
+        getDataChart(datawithajax, 'PLN', firstBaseCurr);
+        setcharts(firstBaseCurr);
+    }
 }
+
+
+function succesCallBackRub(returnData){
+
+    if(!datawithajaxRub.inArray(returnData)) {
+        datawithajaxRub.push(returnData);
+
+        getDataChart(datawithajaxRub, 'EUR', twoBaseCurr);
+        setcharts(twoBaseCurr);
+    }
+}
+
+function succesCallBackEUR(returnData){
+
+    if(!datawithajaxEUR.inArray(returnData)) {
+        datawithajaxEUR.push(returnData);
+
+        getDataChart(datawithajaxEUR, 'PLN', threeBaseCurr);
+        setcharts(threeBaseCurr);
+    }
+}
+
+
+function succesCallBackUSD(returnData){
+
+    if(!datawithajaxUSD.inArray(returnData)) {
+        datawithajaxUSD.push(returnData);
+
+        getDataChart(datawithajaxUSD, 'PLN', fourBaseCurr);
+        setcharts(fourBaseCurr);
+    }
+}
+
 
 
 function errorCallBack(xhr, status, error) {
@@ -156,7 +223,13 @@ function errorCallBack(xhr, status, error) {
 }
 
 function getCurrentCurses(_url, base) {
-    $.getJSON(_url, successCallBack);
+    switch (base){
+        case firstBaseCurr:  $.getJSON(_url, successCallBack); break;
+        case twoBaseCurr: $.getJSON(_url, succesCallBackRub); break;
+        case threeBaseCurr: $.getJSON(_url, succesCallBackEUR); break;
+        case fourBaseCurr: $.getJSON(_url, succesCallBackUSD); break;
+    }
+
 };
 
 
@@ -179,7 +252,6 @@ function getUrl(data, base) {
 function getJsonCursesRange(dates, base) {
     var data;
     var url;
-    var jsonArray = [];
     for (i = 0; i <= dates.length - 1; i++) {
         data = getformatDate(dates[i]);
         url = getUrl(data, base);
@@ -197,8 +269,8 @@ function getDataChart(jsonArray, currences, base) {
 
         var js = {};
         data = jsonArray[i];
-        js.y = data.date;
-        js.base = data.base;
+        js.date = data.date;
+        // js.base = data.base;
         switch (currences) {
             case 'PLN':
                 js.c = data.rates.PLN;
@@ -215,8 +287,17 @@ function getDataChart(jsonArray, currences, base) {
 
         }
 
+        switch (base) {
 
-        datatochart.push(js);
+            case firstBaseCurr:
+                if (!datatochart.inArray(js)) { datatochart.push(js);} break;
+            case twoBaseCurr:
+                if (!datatochartRub.inArray(js)){ datatochartRub.push(js);} break;
+            case threeBaseCurr:
+                if (!datatochartEUR.inArray(js)){ datatochartEUR.push(js);} break;
+            case fourBaseCurr:
+                if (!datatochartUSD.inArray(js)){ datatochartUSD.push(js);} break;
+        }
 
 
     }
@@ -231,10 +312,16 @@ function clearcharts(base) {
         case firstBaseCurr:
             $('#morris-area-chart').html('');
             break;
+        case twoBaseCurr: $('morris-area2-chart').html('');
+
+            break;
+        case threeBaseCurr: $('morris-area3-chart').html('');
+            break;
+        case fourBaseCurr: $('morris-area4-chart').html('');
+            break;
     }
 
 }
-
 
 function setcharts(base) {
     clearcharts(base);
@@ -243,9 +330,54 @@ function setcharts(base) {
             Morris.Area({
                 element: 'morris-area-chart',
                 data: datatochart,
-                xkey: 'y',
+                xkey: 'date',
                 ykeys: ['c'],
-                labels: ['kurs']
+                labels: ['kurs'],
+                pointSize: 2,
+                hideHover: 'false',
+                resize: false,
+                ymin: false
+            });
+            break;
+
+        case twoBaseCurr:
+            Morris.Area({
+                element: 'morris-area2-chart',
+                data: datatochartRub,
+                xkey: 'date',
+                ykeys: ['c'],
+                labels: ['kurs'],
+                pointSize: 2,
+                hideHover: 'false',
+                resize: false,
+                ymin: false
+            });
+        case threeBaseCurr:
+            Morris.Area({
+                element: 'morris-area3-chart',
+                data: datatochartEUR,
+                xkey: 'date',
+                ykeys: ['c'],
+                labels: ['kurs'],
+                pointSize: 2,
+                hideHover: false,
+                resize: false,
+                ymin: false
+
+            });
+
+        case fourBaseCurr:
+            Morris.Area({
+                element: 'morris-area4-chart',
+                data: datatochartUSD,
+                xkey: 'date',
+                ykeys: ['c'],
+                labels: ['kurs'],
+                pointSize: 2,
+                hideHover: false,
+                resize: false,
+                ymin: false
+
             });
             break;
 
