@@ -290,13 +290,13 @@ function getDataChart(jsonArray, currences, base) {
         switch (base) {
 
             case firstBaseCurr:
-                if (!datatochart.inArray(js)) { datatochart.push(js);} break;
+                if (!datatochart.inArray(js)) { datatochart.sort(CompareForSort).push(js);} break;
             case twoBaseCurr:
-                if (!datatochartRub.inArray(js)){ datatochartRub.push(js);} break;
+                if (!datatochartRub.inArray(js)){ datatochartRub.sort(CompareForSort).push(js);} break;
             case threeBaseCurr:
-                if (!datatochartEUR.inArray(js)){ datatochartEUR.push(js);} break;
+                if (!datatochartEUR.inArray(js)){ datatochartEUR.sort(CompareForSort).push(js);} break;
             case fourBaseCurr:
-                if (!datatochartUSD.inArray(js)){ datatochartUSD.push(js);} break;
+                if (!datatochartUSD.inArray(js)){ datatochartUSD.sort(CompareForSort).push(js);} break;
         }
 
 
@@ -306,6 +306,15 @@ function getDataChart(jsonArray, currences, base) {
 
 }
 
+
+function CompareForSort(first, second)
+{
+    if (first.date < second.date)
+        return 0;
+
+    else
+        return 1;
+}
 
 function clearcharts(base) {
     switch (base) {
