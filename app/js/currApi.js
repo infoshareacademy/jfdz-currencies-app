@@ -337,7 +337,7 @@ function setcharts(base) {
     switch (base) {
         case firstBaseCurr:
             Morris.Area({
-                element: 'morris-area-chart',
+                element: 'morris-area1-chart',
                 data: datatochart,
                 xkey: 'date',
                 ykeys: ['c'],
