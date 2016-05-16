@@ -35,7 +35,6 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                                 <img src="app/assets/js/icons/play.png">
-
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
                                 <div>
@@ -87,7 +86,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-yen fa-5x"></i>
+                                <i class="fa fa-question fa-5x calc-icon-cur"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge" id="currencyRate1">Choose</div>
@@ -97,36 +96,32 @@
 
                     <div class="panel-footer">
                         <div class="dropdown">
-                            <select name="dLabel1" id="firstCurrency" class="currencyDropdown"
-                                    data-currency-target="currencyRate1">
-                                <option>pln</option>
-                                <option>eur</option>
-                                <option>usd</option>
-                                <option>chf</option>
-
+                            <select name="dLabel1" id="firstCurrency" class="currencyDropdown" data-currency-target="currencyRate1">
+                                <option>EUR</option>
+                                <option>USD</option>
+                                <option>GBP</option>
+                                <option>YEN</option>
                             </select>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div id="morris-area-chart"></div>
+                                <div id="morris-area1-chart"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-ruble fa-5x"></i>
+                                <i class="fa fa-question fa-5x calc-icon-cur"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge" id="currencyRate2">Choose</div>
@@ -138,10 +133,10 @@
 
                         <div class="dropdown">
                             <select name="dLabel1" id="secondCurrency" class="currencyDropdown" data-currency-target="currencyRate2">
-                                <option>pln</option>
-                                <option>eur</option>
-                                <option>usd</option>
-                                <option>chf</option>
+                                <option>EUR</option>
+                                <option>USD</option>
+                                <option>GBP</option>
+                                <option>YEN</option>
                             </select>
                         </div>
 
@@ -160,11 +155,11 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="panel panel-green">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-eur fa-5x"></i>
+                                <i class="fa fa-question fa-5x calc-icon-cur"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge" id="currencyRate3">Choose</div>
@@ -175,10 +170,10 @@
                     <div class="panel-footer">
                         <div class="dropdown">
                             <select name="dLabel1" id="thirdCurrency" class="currencyDropdown" data-currency-target="currencyRate3">
-                                <option>pln</option>
-                                <option>eur</option>
-                                <option>usd</option>
-                                <option>chf</option>
+                                <option>EUR</option>
+                                <option>USD</option>
+                                <option>GBP</option>
+                                <option>YEN</option>
                             </select>
 
                         </div>
@@ -196,11 +191,11 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="panel panel-yellow">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-usd fa-5x"></i>
+                                <i class="fa fa-question fa-5x calc-icon-cur"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge" id="currencyRate4">Choose</div>
@@ -211,10 +206,10 @@
                     <div class="panel-footer">
                         <div class="dropdown">
                             <select name="dLabel1" id="fourthCurrency" class="currencyDropdown" data-currency-target="currencyRate4">
-                                <option>pln</option>
-                                <option>eur</option>
-                                <option>usd</option>
-                                <option>chf</option>
+                                <option>EUR</option>
+                                <option>USD</option>
+                                <option>GBP</option>
+                                <option>YEN</option>
                             </select>
                         </div>
                     </div>
@@ -247,10 +242,10 @@
                             <tr>
                                 <td class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
                                     <select class="form-control" option="wybierz">
-                                        <option>PLN</option>
                                         <option>EUR</option>
                                         <option>USD</option>
-                                        <option>CHF</option>
+                                        <option>GBP</option>
+                                        <option>YEN</option>
                                     </select>
                                 </td>
                                 <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
@@ -268,10 +263,10 @@
                             <tr>
                                 <td class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
                                     <select class="form-control" option="wybierz">
-                                        <option>PLN</option>
                                         <option>EUR</option>
                                         <option>USD</option>
-                                        <option>CHF</option>
+                                        <option>GBP</option>
+                                        <option>YEN</option>
                                     </select>
                                 </td>
                                 <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
@@ -289,10 +284,10 @@
                             <tr>
                                 <td class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
                                     <select class="form-control" option="wybierz">
-                                        <option>PLN</option>
                                         <option>EUR</option>
                                         <option>USD</option>
-                                        <option>CHF</option>
+                                        <option>GBP</option>
+                                        <option>YEN</option>
                                     </select>
                                 </td>
                                 <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
@@ -310,10 +305,10 @@
                             <tr>
                                 <td class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
                                     <select class="form-control" option="wybierz">
-                                        <option>PLN</option>
                                         <option>EUR</option>
                                         <option>USD</option>
-                                        <option>CHF</option>
+                                        <option>GBP</option>
+                                        <option>YEN</option>
                                     </select>
                                 </td>
                                 <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
