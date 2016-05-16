@@ -41,7 +41,7 @@
                                     <h4>Data początkowa</h4>
                                 </div>
                                 <div class="form-group">
-                                    <div class='input-group date' id='datetimepicker10'>
+                                    <div class='input-group date'  id='datetimepicker10'>
                                         <input type='text' class="form-control"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -57,9 +57,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                                <img src="app/assets/js/icons/stop.png">
-                            </div>
+
                             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
                                 <div>
                                     <h4>Data końcowa</h4>
@@ -72,6 +70,10 @@
                                         </span>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
+                                <!--<img src="app/assets/js/icons/stop.png">-->
+                                <button type="button" class="btn btn-success" id="btnrefresh" >Odśwież</button>
                             </div>
                         </div>
                     </div>
@@ -392,44 +394,19 @@
 <script src="app/js/plugins/morris/morris.min.js"></script>
 <script src="app/js/plugins/morris/morris-data.js"></script>
 <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="app/js/currApi.js"></script>
 <script type="text/javascript"
-        src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker10').datetimepicker({
-            viewMode: 'years',
-            format: 'DD/MM/YYYY'
-        });
-    });
+        src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js">
+
 </script>
+
 <script type="text/javascript">
     $(function () {
-        $('#datetimepicker11').datetimepicker({
-            viewMode: 'years',
-            format: 'DD/MM/YYYY'
-        });
         $('#data').datetimepicker({
             viewMode: 'years',
             format: 'DD/MM/YYYY'
         });
     });
-$('.currencyDropdown').change(function() {
-    var field = $(this).attr('data-currency-target');
-
-    var cur = 'fa-' + $(this).val().toLowerCase();
-    var icon = $(this).parents('.panel').find('.calc-icon-cur');
-    console.log(icon);
-    icon.removeClass('fa-eur fa-usd fa-gbp fa-yen fa-question').addClass( cur );
-    var currency = { EUR: '1.00', USD: '4.00', GBP: '4.50', YEN: '3.50'}
-    $('#'+field).html(currency[ $(this).val() ] );
-
-
-    var huge = $(this).parents('.panel').find('.huge');
-    var id = huge.attr('id').replace('currencyRate', '');
-    drawChart( $(this).val(), 'morris-area' + id + '-chart' );
-
-});
-
 
 </script>
 </body>
