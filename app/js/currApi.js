@@ -336,61 +336,82 @@ function setcharts(base) {
     clearcharts(base);
     switch (base) {
         case firstBaseCurr:
-            Morris.Area({
-                element: 'morris-area1-chart',
-                data: datatochart,
-                xkey: 'date',
-                ykeys: ['c'],
-                labels: ['kurs'],
-                pointSize: 2,
-                hideHover: 'false',
-                resize: false,
-                ymin: false
-            });
+            drawChart('4,5','morris-area1-chart', datatochart);
+            //Morris.Area({
+            //    element: 'morris-area1-chart',
+            //    data: datatochart,
+            //    xkey: 'date',
+            //    ykeys: ['c'],
+            //    labels: ['kurs'],
+            //    pointSize: 2,
+            //    hideHover: 'false',
+            //    resize: false,
+            //    ymin: false
+            //});
             break;
 
         case twoBaseCurr:
-            Morris.Area({
-                element: 'morris-area2-chart',
-                data: datatochartRub,
-                xkey: 'date',
-                ykeys: ['c'],
-                labels: ['kurs'],
-                pointSize: 2,
-                hideHover: 'false',
-                resize: false,
-                ymin: false
-            });
+            drawChart('4,0','morris-area2-chart', datatochartRub);
+            //Morris.Area({
+            //    element: 'morris-area2-chart',
+            //    data: datatochartRub,
+            //    xkey: 'date',
+            //    ykeys: ['c'],
+            //    labels: ['kurs'],
+            //    pointSize: 2,
+            //    hideHover: 'false',
+            //    resize: false,
+            //    ymin: false
+            //});
         case threeBaseCurr:
-            Morris.Area({
-                element: 'morris-area3-chart',
-                data: datatochartEUR,
-                xkey: 'date',
-                ykeys: ['c'],
-                labels: ['kurs'],
-                pointSize: 2,
-                hideHover: false,
-                resize: false,
-                ymin: false
-
-            });
+            drawChart('3,0','morris-area3-chart', datatochartEUR);
+            //Morris.Area({
+            //    element: 'morris-area3-chart',
+            //    data: datatochartEUR,
+            //    xkey: 'date',
+            //    ykeys: ['c'],
+            //    labels: ['kurs'],
+            //    pointSize: 2,
+            //    hideHover: false,
+            //    resize: false,
+            //    ymin: false
+            //
+            //});
 
         case fourBaseCurr:
-            Morris.Area({
-                element: 'morris-area4-chart',
-                data: datatochartUSD,
-                xkey: 'date',
-                ykeys: ['c'],
-                labels: ['kurs'],
-                pointSize: 2,
-                hideHover: false,
-                resize: false,
-                ymin: false
-
-            });
+            drawChart('3,0','morris-area4-chart', datatochartUSD);
+            //Morris.Area({
+            //    element: 'morris-area4-chart',
+            //    data: datatochartUSD,
+            //    xkey: 'date',
+            //    ykeys: ['c'],
+            //    labels: ['kurs'],
+            //    pointSize: 2,
+            //    hideHover: false,
+            //    resize: false,
+            //    ymin: false
+            //
+            //});
             break;
 
     }
 }
+
+
+
+
+drawChart = function( currency, id, data ) {
+    $('#' + id).text('');
+    Morris.Area({
+        element: id,
+        data: data,
+        xkey: 'date', //'period',
+        ykeys: [ 'c' ], //currency.toLowerCase()
+        labels: [ currency.toUpperCase() ],
+        pointSize: 2,
+        hideHover: 'auto',
+        resize: false
+    });
+};
 
 
