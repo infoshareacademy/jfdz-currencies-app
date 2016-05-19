@@ -3,27 +3,24 @@
  */
 
 
-const baseCurr='PLN';
-const firstChart='morris-area1-chart';
-const twoChart='morris-area2-chart';
-const threeChart='morris-area3-chart';
-const fourChart='morris-area4-chart';
+const baseCurr = 'PLN';
+const firstChart = 'morris-area1-chart';
+const twoChart = 'morris-area2-chart';
+const threeChart = 'morris-area3-chart';
+const fourChart = 'morris-area4-chart';
 
 
 var datawithajax = [];
 var datatochart = [];
 
 var datawithajaxRub = [];
-var datatochartRub= [];
+var datatochartRub = [];
 
 var datawithajaxEUR = [];
-var datatochartEUR= [];
+var datatochartEUR = [];
 
 var datawithajaxUSD = [];
-var datatochartUSD= [];
-
-
-
+var datatochartUSD = [];
 
 
 $(function () {
@@ -55,7 +52,6 @@ $(function () {
 
 $('#btnrefresh').click(
     function () {
-
 
 
         datawithajax.splice(0, datawithajax.length);
@@ -166,18 +162,18 @@ function getDates(startDate, stopDate) {
 }
 
 
-Array.prototype.inArray = function(wartosc) {
+Array.prototype.inArray = function (wartosc) {
 
-    for(x = 0; x < this.length; x++)
-        if(this[x].date == wartosc.date) return true;
+    for (x = 0; x < this.length; x++)
+        if (this[x].date == wartosc.date) return true;
 
     return false;
 }
 
 
 function successCallBackFirstChart(returnData) {
-    var field =$('#firstCurrency');
-    if(!datawithajax.inArray(returnData) ) {
+    var field = $('#firstCurrency');
+    if (!datawithajax.inArray(returnData)) {
         datawithajax.push(returnData);
 
         getDataChart(datawithajax, field.val(), firstChart);
@@ -186,10 +182,10 @@ function successCallBackFirstChart(returnData) {
 }
 
 
-function succesCallBackTwoChart(returnData){
-    var field =$('#secondCurrency');
+function succesCallBackTwoChart(returnData) {
+    var field = $('#secondCurrency');
 
-    if(!datawithajaxRub.inArray(returnData)) {
+    if (!datawithajaxRub.inArray(returnData)) {
         datawithajaxRub.push(returnData);
 
         getDataChart(datawithajaxRub, field.val(), twoChart);
@@ -197,21 +193,21 @@ function succesCallBackTwoChart(returnData){
     }
 }
 
-function succesCallBackThreeChart(returnData){
-    var field =$('#thirdCurrency');
-    if(!datawithajaxEUR.inArray(returnData)) {
+function succesCallBackThreeChart(returnData) {
+    var field = $('#thirdCurrency');
+    if (!datawithajaxEUR.inArray(returnData)) {
         datawithajaxEUR.push(returnData);
 
-        getDataChart(datawithajaxEUR, field.val() , threeChart);
+        getDataChart(datawithajaxEUR, field.val(), threeChart);
         setcharts(threeChart);
     }
 }
 
 
-function succesCallBackFourChart(returnData){
-    var field =$('fourthCurrency');
+function succesCallBackFourChart(returnData) {
+    var field = $('#fourthCurrency');
 
-    if(!datawithajaxUSD.inArray(returnData)) {
+    if (!datawithajaxUSD.inArray(returnData)) {
         datawithajaxUSD.push(returnData);
 
         getDataChart(datawithajaxUSD, field.val(), fourChart);
@@ -220,18 +216,25 @@ function succesCallBackFourChart(returnData){
 }
 
 
-
 function errorCallBack(xhr, status, error) {
 
 
 }
 
 function getCurrentCurses(_url, chart) {
-    switch (chart){
-        case firstChart :  $.getJSON(_url, successCallBackFirstChart); break;
-        case twoChart: $.getJSON(_url, succesCallBackTwoChart); break;
-        case threeChart: $.getJSON(_url, succesCallBackThreeChart); break;
-        case fourChart: $.getJSON(_url, succesCallBackFourChart); break;
+    switch (chart) {
+        case firstChart :
+            $.getJSON(_url, successCallBackFirstChart);
+            break;
+        case twoChart:
+            $.getJSON(_url, succesCallBackTwoChart);
+            break;
+        case threeChart:
+            $.getJSON(_url, succesCallBackThreeChart);
+            break;
+        case fourChart:
+            $.getJSON(_url, succesCallBackFourChart);
+            break;
     }
 
 };
@@ -296,13 +299,25 @@ function getDataChart(jsonArray, currences, chart) {
         switch (chart) {
 
             case firstChart:
-                if (!datatochart.inArray(js)) { datatochart.sort(CompareForSort).push(js);} break;
+                if (!datatochart.inArray(js)) {
+                    datatochart.sort(CompareForSort).push(js);
+                }
+                break;
             case twoChart:
-                if (!datatochartRub.inArray(js)){ datatochartRub.sort(CompareForSort).push(js);} break;
+                if (!datatochartRub.inArray(js)) {
+                    datatochartRub.sort(CompareForSort).push(js);
+                }
+                break;
             case threeChart:
-                if (!datatochartEUR.inArray(js)){ datatochartEUR.sort(CompareForSort).push(js);} break;
+                if (!datatochartEUR.inArray(js)) {
+                    datatochartEUR.sort(CompareForSort).push(js);
+                }
+                break;
             case fourChart:
-                if (!datatochartUSD.inArray(js)){ datatochartUSD.sort(CompareForSort).push(js);} break;
+                if (!datatochartUSD.inArray(js)) {
+                    datatochartUSD.sort(CompareForSort).push(js);
+                }
+                break;
         }
 
 
@@ -313,8 +328,7 @@ function getDataChart(jsonArray, currences, chart) {
 }
 
 
-function CompareForSort(first, second)
-{
+function CompareForSort(first, second) {
     if (first.date < second.date)
         return 0;
 
@@ -324,14 +338,18 @@ function CompareForSort(first, second)
 
 function clearcharts(chart) {
     switch (chart) {
-        case firstChart:$('#'+chart).html('');
+        case firstChart:
+            $('#' + chart).html('');
             break;
-        case twoChart: $('#'+chart).html('');
+        case twoChart:
+            $('#' + chart).html('');
 
             break;
-        case threeChart: $('#'+chart).html('');
+        case threeChart:
+            $('#' + chart).html('');
             break;
-        case fourChart: $('#'+chart).html('');
+        case fourChart:
+            $('#' + chart).html('');
             break;
     }
 
@@ -341,33 +359,31 @@ function setcharts(chart) {
     clearcharts(chart);
     switch (chart) {
         case firstChart:
-            drawChart('4,5',chart, datatochart);
+            drawChart( chart, datatochart);
             break;
 
         case twoChart:
-            drawChart('4,0',chart, datatochartRub);
+            drawChart( chart, datatochartRub);
             break;
         case threeChart:
-            drawChart('3,0',chart, datatochartEUR);
+            drawChart( chart, datatochartEUR);
             break;
         case fourChart:
-            drawChart('3,0',chart, datatochartUSD);
+            drawChart( chart, datatochartUSD);
             break;
 
     }
 }
 
 
-
-
-drawChart = function( currency, id, data ) {
+drawChart = function ( id, data) {
     $('#' + id).text('');
     Morris.Area({
         element: id,
         data: data,
         xkey: 'date', //'period',
-        ykeys: [ 'c' ], //currency.toLowerCase()
-        labels: [ 'Kurs' ],
+        ykeys: ['c'], //currency.toLowerCase()
+        labels: ['Kurs'],
         pointSize: 2,
         hideHover: 'auto',
         resize: false
@@ -376,30 +392,89 @@ drawChart = function( currency, id, data ) {
 
 
 
-function GetTodayValues(){
 
+
+function GetTodayValues(url, base, th, field) {
+
+    var showData;
+
+    $.getJSON(url, function (data) {
+        console.log(data);
+        var currency = data.rates;
+
+        switch ($(th).val()) {
+            case   'EUR':
+                $('#' + field).html(data.rates.EUR);
+                break;
+            case   'USD':
+                $('#' + field).html(data.rates.USD);
+                break;
+            case 'GBP':
+                $('#' + field).html(data.rates.GBP);
+                break;
+            case 'JPY':
+                $('#' + field).html(data.rates.JPY);
+                break;
+
+        }
+
+
+
+
+        var huge = $(th).parents('.panel').find('.huge');
+        var id = huge.attr('id').replace('currencyRate', '');
+
+        var js = {};
+        var dataToChar=[];
+        js.date = data.date;
+        switch ($(th).val()) {
+            case 'PLN':
+                js.c = data.rates.PLN;
+                break;
+            case 'GBP':
+                js.c = data.rates.GBP;
+                break;
+            case 'EUR':
+                js.c = data.rates.EUR;
+                break;
+            case 'USD':
+                js.c = data.rates.USD;
+                break;
+            case 'JPY':
+                js.c = data.rates.JPY;
+                break;
+
+        }
+
+
+            dataToChar.push(js);
+
+
+        drawChart('morris-area' + id + '-chart', dataToChar);
+
+    });
 
 }
 
 
-
-$('.currencyDropdown').change(function() {
+$('.currencyDropdown').change(function () {
     var field = $(this).attr('data-currency-target');
 
     var cur = 'fa-' + $(this).val().toLowerCase();
     var icon = $(this).parents('.panel').find('.calc-icon-cur');
     console.log(icon);
-    icon.removeClass('fa-eur fa-usd fa-gbp fa-yen fa-question').addClass( cur );
-
-    var currency = { EUR: '1.00', USD: '4.00', GBP: '4.50', YEN: '3.50'};
-
-    $('#'+field).html(currency[ $(this).val() ] );
+    icon.removeClass('fa-eur fa-usd fa-gbp fa-yen fa-question').addClass(cur);
 
 
-    var huge = $(this).parents('.panel').find('.huge');
-    var id = huge.attr('id').replace('currencyRate', '');
-    drawChart( $(this).val(), 'morris-area' + id + '-chart' );
+    var url = 'http://api.fixer.io/latest?base=PLN&callback=?';
 
+    if (checkInvalidDates()) {
+
+
+        GetTodayValues(url, baseCurr, this, field);
+
+
+    }
 });
 
 
