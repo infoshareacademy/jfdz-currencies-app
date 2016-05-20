@@ -49,41 +49,46 @@ $(function () {
 
 });
 
-
-$('#btnrefresh').click(
-    function () {
+function onChangeDatePicker(){
 
 
-        datawithajax.splice(0, datawithajax.length);
-        datatochart.splice(0, datatochart.length);
+
+    datawithajax.splice(0, datawithajax.length);
+    datatochart.splice(0, datatochart.length);
 
 
-        if (checkInvalidDates()) {
-            var dates = getDates(getDateFrom(), getDateTo());
-            getJsonCursesRange(dates, baseCurr, firstChart);
+    if (checkInvalidDates()) {
+        var dates = getDates(getDateFrom(), getDateTo());
+        getJsonCursesRange(dates, baseCurr, firstChart);
 
 
-            datawithajaxRub.splice(0, datawithajaxRub.length);
-            datatochartRub.splice(0, datatochartRub.length);
+        datawithajaxRub.splice(0, datawithajaxRub.length);
+        datatochartRub.splice(0, datatochartRub.length);
 
-            getJsonCursesRange(dates, baseCurr, twoChart);
+        getJsonCursesRange(dates, baseCurr, twoChart);
 
-            datawithajaxEUR.splice(0, datawithajaxEUR.length);
-            datatochartEUR.splice(0, datatochartEUR.length);
-
-
-            getJsonCursesRange(dates, baseCurr, threeChart);
+        datawithajaxEUR.splice(0, datawithajaxEUR.length);
+        datatochartEUR.splice(0, datatochartEUR.length);
 
 
-            datawithajaxUSD.splice(0, datawithajaxUSD.length);
-            datatochartUSD.splice(0, datatochartUSD.length);
-
-            getJsonCursesRange(dates, baseCurr, fourChart);
-        }
+        getJsonCursesRange(dates, baseCurr, threeChart);
 
 
+        datawithajaxUSD.splice(0, datawithajaxUSD.length);
+        datatochartUSD.splice(0, datatochartUSD.length);
+
+        getJsonCursesRange(dates, baseCurr, fourChart);
     }
-);
+
+
+}
+
+
+
+
+
+
+
 
 
 function getformatDate(data) {
@@ -447,10 +452,33 @@ function GetTodayValues(url, base, th, field) {
         }
 
 
-            dataToChar.push(js);
+        dataToChar.push(js);
 
 
-        drawChart('morris-area' + id + '-chart', dataToChar);
+        // drawChart('morris-area' + id + '-chart', dataToChar);
+
+
+        var dates = getDates(getDateFrom(), getDateTo());
+
+        if ('morris-area' + id + '-chart'===firstChart ) {
+            datawithajax.splice(0, datawithajax.length);
+            datatochart.splice(0, datatochart.length);
+            getJsonCursesRange(dates, baseCurr, firstChart);
+        } else if ('morris-area' + id + '-chart'===twoChart){
+            datawithajaxRub.splice(0, datawithajaxRub.length);
+            datatochartRub.splice(0, datatochartRub.length);
+            getJsonCursesRange(dates, baseCurr, twoChart);
+
+        } else if ('morris-area' + id + '-chart'===threeChart){
+            datawithajaxEUR.splice(0, datawithajaxEUR.length);
+            datatochartEUR.splice(0, datatochartEUR.length);
+            getJsonCursesRange(dates, baseCurr, threeChart);
+
+        }  else if ('morris-area' + id + '-chart'===fourChart) {
+            datawithajaxUSD.splice(0, datawithajaxUSD.length);
+            datatochartUSD.splice(0, datatochartUSD.length);
+            getJsonCursesRange(dates, baseCurr, fourChart);
+        }
 
     });
 
