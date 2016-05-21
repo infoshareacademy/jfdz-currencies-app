@@ -9,6 +9,7 @@
     <meta name="author" content="">
     <title>SB Admin - Bootstrap Admin Template</title>
     <link rel="stylesheet" media="all" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link href="app/assets/css/style.css" rel="stylesheet">
     <link href="app/assets/css/sb-admin.css" rel="stylesheet">
     <link href="app/assets/css/morris.css" rel="stylesheet">
     <link href="app/font/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -249,7 +250,7 @@
                                     </select>
                                 </td>
                                 <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                                    <div class="input-group date" id="data">
+                                    <div class="input-group date planowanieKalendarz" id="data">
                                         <input type="text" class="form-control">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -270,7 +271,7 @@
                                     </select>
                                 </td>
                                 <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                                    <div class="input-group date2" id="data2">
+                                    <div class="input-group date2 planowanieKalendarz" id="data2">
                                         <input type="text" class="form-control">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -291,7 +292,7 @@
                                     </select>
                                 </td>
                                 <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                                    <div class="input-group date3" id="data3">
+                                    <div class="input-group date3 planowanieKalendarz" id="data3">
                                         <input type="text" class="form-control">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -312,7 +313,7 @@
                                     </select>
                                 </td>
                                 <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                                    <div class="input-group date4" id="data4">
+                                    <div class="input-group date4 planowanieKalendarz" id="data4">
                                         <input type="text" class="form-control">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -402,7 +403,7 @@
 
 <script type="text/javascript">
     $(function () {
-        $('#data').datetimepicker({
+        $('.planowanieKalendarz').datetimepicker({
             viewMode: 'years',
             format: 'DD/MM/YYYY'
         });
