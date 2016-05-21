@@ -390,7 +390,7 @@ drawChart = function ( id, data) {
         ykeys: ['c'], //currency.toLowerCase()
         labels: ['Kurs'],
         pointSize: 2,
-        hideHover: 'auto',
+        hideHover: 'false',
         resize: false
     });
 };
