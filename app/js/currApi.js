@@ -287,16 +287,16 @@ function getDataChart(jsonArray, currences, chart) {
                 js.c = data.rates.PLN;
                 break;
             case 'GBP':
-                js.c = data.rates.GBP;
+                js.c = ( 1 /data.rates.GBP).toFixed(2);
                 break;
             case 'EUR':
-                js.c = data.rates.EUR;
+                js.c = ( 1 / data.rates.EUR).toFixed(2);
                 break;
             case 'USD':
-                js.c = data.rates.USD;
+                js.c = ( 1 / data.rates.USD).toFixed(2);
                 break;
             case 'JPY':
-                js.c = data.rates.JPY;
+                js.c = ( 1 / data.rates.JPY).toFixed(2);
                 break;
 
         }
@@ -409,16 +409,16 @@ function GetTodayValues(url, base, th, field) {
 
         switch ($(th).val()) {
             case   'EUR':
-                $('#' + field).html(data.rates.EUR);
+                $('#' + field).html(( 1 / data.rates.EUR).toFixed(2));
                 break;
             case   'USD':
-                $('#' + field).html(data.rates.USD);
+                $('#' + field).html( (1 / data.rates.USD).toFixed(2));
                 break;
             case 'GBP':
-                $('#' + field).html(data.rates.GBP);
+                $('#' + field).html((1 / data.rates.GBP).toFixed(2));
                 break;
             case 'JPY':
-                $('#' + field).html(data.rates.JPY);
+                $('#' + field).html(( 1 / data.rates.JPY).toFixed(2));
                 break;
 
         }
@@ -437,16 +437,16 @@ function GetTodayValues(url, base, th, field) {
                 js.c = data.rates.PLN;
                 break;
             case 'GBP':
-                js.c = data.rates.GBP;
+                js.c = ( 1 / data.rates.GBP).toFixed(2) ;
                 break;
             case 'EUR':
-                js.c = data.rates.EUR;
+                js.c = (1 / data.rates.EUR).toFixed(2);
                 break;
             case 'USD':
-                js.c = data.rates.USD;
+                js.c = (1 / data.rates.USD).toFixed(2);
                 break;
             case 'JPY':
-                js.c = data.rates.JPY;
+                js.c = (1 / data.rates.JPY).toFixed(2);
                 break;
 
         }
