@@ -132,8 +132,22 @@ function getDateTo() {
 
 
 function checkInvalidDates() {
+
+
+
+
     var datafrom = getDateFrom();
     var datato = getDateTo();
+
+    var daymsc=1000*60*60*24;
+    var mDate_from = datafrom.getTime();
+    var mDate_to = datato.getTime();
+
+    var days= ((mDate_to- mDate_from) / daymsc);
+
+    //var days = (( mDate_to – mDate_from ) / ( daymsc));
+
+
     if (datafrom > datato) {
         alert('Błędne określenie dat');
         return false;
@@ -143,6 +157,9 @@ function checkInvalidDates() {
 
     } else if (getformatDate(datato) === '1970-01-01') {
         alert('Proszę wypełnić pole Data końcowa');
+        return false;
+    } else if ( days > 30) {
+        alert('Za duży zakres dat.');
         return false;
     }
 
