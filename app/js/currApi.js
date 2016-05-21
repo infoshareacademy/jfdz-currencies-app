@@ -140,6 +140,9 @@ function checkInvalidDates() {
     } else if (getformatDate(datafrom) === '1970-01-01') {
         alert('Proszę wypełnić pole Data początkowa');
         return false;
+    } else if ((datato-datafrom) > 30 ) {
+        alert('Zbyt długi okres czasu');
+        return false;
 
     } else if (getformatDate(datato) === '1970-01-01') {
         alert('Proszę wypełnić pole Data końcowa');
