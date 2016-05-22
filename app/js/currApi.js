@@ -132,8 +132,22 @@ function getDateTo() {
 
 
 function checkInvalidDates() {
+
+
+
+
     var datafrom = getDateFrom();
     var datato = getDateTo();
+
+    var daymsc=1000*60*60*24;
+    var mDate_from = datafrom.getTime();
+    var mDate_to = datato.getTime();
+
+    var days= ((mDate_to- mDate_from) / daymsc);
+
+    //var days = (( mDate_to – mDate_from ) / ( daymsc));
+
+
     if (datafrom > datato) {
         alert('Błędne określenie dat');
         return false;
@@ -146,6 +160,9 @@ function checkInvalidDates() {
 
     } else if (getformatDate(datato) === '1970-01-01') {
         alert('Proszę wypełnić pole Data końcowa');
+        return false;
+    } else if ( days > 30) {
+        alert('Za duży zakres dat.');
         return false;
     }
 
@@ -183,7 +200,7 @@ function successCallBackFirstChart(returnData) {
     var field = $('#firstCurrency');
     if (!datawithajax.inArray(returnData)) {
         datawithajax.push(returnData);
-
+        localStorage.setItem("firstCurrency", field.val());
         getDataChart(datawithajax, field.val(), firstChart);
         setcharts(firstChart);
     }
@@ -195,7 +212,7 @@ function succesCallBackTwoChart(returnData) {
 
     if (!datawithajaxRub.inArray(returnData)) {
         datawithajaxRub.push(returnData);
-
+localStorage.setItem("secondCurrency", field.val());
         getDataChart(datawithajaxRub, field.val(), twoChart);
         setcharts(twoChart);
     }
@@ -205,7 +222,7 @@ function succesCallBackThreeChart(returnData) {
     var field = $('#thirdCurrency');
     if (!datawithajaxEUR.inArray(returnData)) {
         datawithajaxEUR.push(returnData);
-
+        localStorage.setItem("thirdCurrency", field.val());
         getDataChart(datawithajaxEUR, field.val(), threeChart);
         setcharts(threeChart);
     }
@@ -217,7 +234,7 @@ function succesCallBackFourChart(returnData) {
 
     if (!datawithajaxUSD.inArray(returnData)) {
         datawithajaxUSD.push(returnData);
-
+        localStorage.setItem("fourthCurrency", field.val());
         getDataChart(datawithajaxUSD, field.val(), fourChart);
         setcharts(fourChart);
     }
@@ -385,6 +402,7 @@ function setcharts(chart) {
 
 
 drawChart = function ( id, data) {
+    console.log(data);
     $('#' + id).text('');
     Morris.Area({
         element: id,
